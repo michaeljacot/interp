@@ -28,7 +28,8 @@ def get50and200(ticket,domain):
     return sma50,sma200,prices
     
     
-sma50,sma200,prices = get50and200("TSLA", 5000)
+ticket = "SPHD"
+sma50,sma200,prices = get50and200(ticket, 5000)
 
 
 
@@ -273,16 +274,52 @@ def getAnalysis(shortMa,longMa):
         print("The polygon at intrval ", i, " has \nArea ", p)
         i+=1
     
+    
+    compare = relationship(diff,polygon_areas)
+    
+    
+    plt.title(len(diff))
     plt.plot(diff)
     plt.show()
+    plt.title(len(polygon_areas))
     plt.plot(polygon_areas)
     plt.show()
+    plt.plot(compare)
     
     
     return lines,intersections, polygon_areas,polygons
 
 
+def relationship(diff,polygon_areas):
+    
+    result = []
+    
+    
+    """
+    *thing to rememeber about this*
+    
+    we want to compare the angle to the area of the section that 
+    came directly before the intersection. this means that when adding them
+    in index form (like below) you cant just add a[i]+b[i], one of the indexes 
+    probbably has to be staggered
+    
+    """
+    
+    
+    for i in range(len(polygon_areas)):
+    
+        #ACTUAL EQUATION GOES HERE
+        """
+            R = A^D
+        """
+        result.append(polygon_areas[i]**diff[i+1])
+        
+    return result
+    
 
+sma50 = sma50[:len(sma200)]
+
+plt.title(ticket)
 plt.plot(sma50)
 plt.plot(sma200)
 
