@@ -339,7 +339,7 @@ class interp:
 ticket = "SPHD"
 interpObj = interp(ticket,4000)
 
-
+bebeoobab = interp("TSLA",5000)
 
 
 
@@ -367,4 +367,4 @@ plt.title("Interp Index")
 plt.plot(interpObj.result)
 
 
-
+#maybe make a method outside of this class(or in this class) to display the info graphically instead of doing this bullshit
