@@ -368,12 +368,3 @@ plt.plot(interpObj.result)
 
 
 
-
-
-
-
-"""
-for i in range(len(intersections)-1):
-    
-    print("points " , intersections[i] , " and " , intersections[i+1] , " has an area of \n", polygon_areas[i])
-"""
