@@ -14,6 +14,9 @@ from SupportResistanceMethod import getData
 
 
 
+
+
+
 def SMA(x, w):
     return np.convolve(x, np.ones(w), 'valid') / w
 
@@ -29,7 +32,7 @@ def get50and200(ticket,domain):
     
     
 ticket = "SPHD"
-sma50,sma200,prices = get50and200(ticket, 5000)
+sma50,sma200,prices = get50and200(ticket, 4000)
 
 
 
@@ -275,20 +278,29 @@ def getAnalysis(shortMa,longMa):
         i+=1
     
     
+    #normalzie both data sets
+        
+    diff = normalizeData(diff)
+    polygon_areas = normalizeData(polygon_areas)
+    
     compare = relationship(diff,polygon_areas)
     
-    
-    plt.title(len(diff))
+    angleTitle = "Angle difference: " , len(diff)
+    plt.title(angleTitle)
     plt.plot(diff)
     plt.show()
-    plt.title(len(polygon_areas))
+    polyTitle = "Polygon area: ", len(polygon_areas)
+    plt.title(polyTitle)
     plt.plot(polygon_areas)
     plt.show()
     plt.plot(compare)
     
     
-    return lines,intersections, polygon_areas,polygons
+    return compare,lines,intersections, polygon_areas,polygons
 
+
+def normalizeData(data):
+    return (data - np.min(data)) / (np.max(data) - np.min(data))
 
 def relationship(diff,polygon_areas):
     
@@ -310,9 +322,9 @@ def relationship(diff,polygon_areas):
     
         #ACTUAL EQUATION GOES HERE
         """
-            R = A^D
+            R = (A+D)/2
         """
-        result.append(polygon_areas[i]**diff[i+1])
+        result.append((polygon_areas[i]+diff[i+1])/2)
         
     return result
     
@@ -324,7 +336,7 @@ plt.plot(sma50)
 plt.plot(sma200)
 
 
-angles,intersections,polygon_areas,polygons = getAnalysis(sma200,sma50)
+compare,angles,intersections,polygon_areas,polygons = getAnalysis(sma200,sma50)
 
 
 """
