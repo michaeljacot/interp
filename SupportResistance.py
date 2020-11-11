@@ -15,9 +15,9 @@ import matplotlib.pyplot as plt
 ######## main method ##########
 
 
-symbol = "UBER"
+symbol = "AMZN"
 
-data = getData(symbol,453)
+data = getData(symbol,4000)
 
 #get lines s - 0 , r - 1
 intervals = [23,45] 

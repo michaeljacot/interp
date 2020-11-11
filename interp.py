@@ -18,8 +18,11 @@ class interp:
 
 
     def __init__(self,ticket,domain):
-        sma50,sma200,prices = self.get50and200(ticket, 4000)
+        sma50,sma200,prices = self.get50and200(ticket, domain)
         sma50 = sma50[:len(sma200)]
+        
+        
+        
         result,angles,intersections,polygon_areas,polygons,diff = self.getAnalysis(sma200,sma50)
         
         self.ticket = ticket
@@ -146,6 +149,10 @@ class interp:
                     #get average intersection lines for this intersection
                     mShort,bShort = np.polyfit(x[:i],shortMa[:i],1)
                     mLong,bLong = np.polyfit(x[:i],longMa[:i],1)
+                    
+                    #convert to angle relative to x axis 
+                    mShort = np.arctan(mShort)
+                    mLong = np.arctan(mLong)
                     
                     angles.append((mShort,mLong,i))
                     
@@ -281,7 +288,7 @@ class interp:
         diff = []
         
         for l in lines:
-            diff.append(abs(l[0]-l[1]))
+            diff.append(l[0]-l[1])
             print("The intersection at " , l[2], " has a slope difference of " , abs(l[0]-l[1]))
         
         
@@ -336,13 +343,15 @@ class interp:
         return result
     
 
-ticket = "SPHD"
-interpObj = interp(ticket,4000)
-
-bebeoobab = interp("TSLA",5000)
+ticket = "DJI"
+interpObj = interp(ticket,2000)
 
 
 
+polygons  = interpObj.polygons
+angles = interpObj.angles
+diff = interpObj.diff
+index = interpObj.result
 
 
 
