@@ -18,19 +18,18 @@ class interp:
 
 
 
-    def __init__(self,ticket,domain):
-        sma50,sma200,prices = self.get50and200(ticket, domain)
-        sma50 = sma50[:len(sma200)]
+    def __init__(self,sma200,sma50):
+        
         
         
         
         result,angles,intersections,polygon_areas,polygons,diff = self.getAnalysis(sma200,sma50)
         
-        self.ticket = ticket
-        self.domain = domain
+        
+        
         self.sma50 = sma50
         self.sma200 = sma200
-        self.prices = prices
+        
         self.result = result
         self.angles = angles
         self.intersections = intersections
@@ -133,7 +132,7 @@ class interp:
         angles = []
         
         
-        localRange = 5
+        localRange = 2
         
         x = np.arange(0,len(shortMa),1)
         
@@ -285,11 +284,7 @@ class interp:
             a small area before intersection and small intersection angle result in the lowest confidence
         """
         
-        #makes them the same length
-        if len(shortMa) < len(longMa):
-            longMa = longMa[:len(shortMa)]
-        elif len(longMa) < len(shortMa):
-            shortMa = shortMa[:len(longMa)]
+        
 
         
         intersections = self.getIntersections(shortMa,longMa)
@@ -356,37 +351,11 @@ class interp:
         return result
     
 
-ticket = "BTC-USD"
-interpObj = interp(ticket,2000)
 
 
 
-polygons  = interpObj.polygons
-angles = interpObj.angles
-diff = interpObj.diff
-index = interpObj.result
 
 
-
-plt.title(ticket)
-plt.plot(interpObj.sma50)
-plt.plot(interpObj.sma200)
-#plots the individual intersections points in red on the graph with the data sets
-for i in interpObj.intersections:
-    plt.plot(i,interpObj.sma50[i], marker='o', markersize=3, color="red")
-plt.show()
-
-angleTitle = "Angle difference: " , len(interpObj.diff) 
-plt.title(angleTitle)
-plt.plot(interpObj.diff)
-plt.show()
-polyTitle = "Polygon area: ", len(interpObj.polygon_areas)
-plt.title(polyTitle)
-plt.plot(interpObj.polygon_areas)
-plt.show()
-plt.plot(interpObj.result)
-plt.title("Interp Index")
-plt.plot(interpObj.result)
 
 
 #maybe make a method outside of this class(or in this class) to display the info graphically instead of doing this bullshit
