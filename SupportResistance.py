@@ -15,9 +15,9 @@ import matplotlib.pyplot as plt
 ######## main method ##########
 
 
-symbol = "AMZN"
+symbol = "BTC-USD"
 
-data = getData(symbol,4000)
+data = getData(symbol,300)
 
 #get lines s - 0 , r - 1
 intervals = [23,45] 

@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 from lineCalc import *
 from shapely.geometry import Polygon
 from SupportResistanceMethod import getData
+import math as m 
 
 
 
@@ -111,7 +112,6 @@ class interp:
             
             if highest == 1:
                 if shortMa[i] < longMa[i]:
-                    print(i)
                     intersections.append(int(i))
                     highest = 0 #reset the highest so that the longerlist is on top
                 
@@ -150,17 +150,30 @@ class interp:
                     mShort,bShort = np.polyfit(x[:i],shortMa[:i],1)
                     mLong,bLong = np.polyfit(x[:i],longMa[:i],1)
                     
+                    
                     #convert to angle relative to x axis 
                     mShort = np.arctan(mShort)
+                    mShort = m.degrees(mShort)
                     mLong = np.arctan(mLong)
+                    mLong = m.degrees(mLong)
                     
-                    angles.append((mShort,mLong,i))
+                    print("first")
                     
+                    angles.append((mShort,mLong,i))    
             
             else:
                 #get average intersection lines for this intersection
                 mShort,bShort = np.polyfit(x[i-localRange:i],shortMa[i-localRange:i],1)
                 mLong,bLong = np.polyfit(x[i-localRange:i],longMa[i-localRange:i],1)
+                
+                #convert to angle relative to x axis 
+                mShort = np.arctan(mShort)
+                mShort = m.degrees(mShort)
+                mLong = np.arctan(mLong)
+                mLong = m.degrees(mLong)
+                    
+                print("second")
+            
                 angles.append((mShort,mLong,i))
     
      
@@ -288,7 +301,7 @@ class interp:
         diff = []
         
         for l in lines:
-            diff.append(l[0]-l[1])
+            diff.append(abs(l[0]-l[1]))
             print("The intersection at " , l[2], " has a slope difference of " , abs(l[0]-l[1]))
         
         
@@ -343,7 +356,7 @@ class interp:
         return result
     
 
-ticket = "DJI"
+ticket = "BTC-USD"
 interpObj = interp(ticket,2000)
 
 
