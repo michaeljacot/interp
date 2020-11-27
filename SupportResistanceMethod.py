@@ -16,11 +16,11 @@ from DerivativeAnalysis import turningPoints
 def getData(stock,domain):
     
     tick = yf.Ticker(stock)
-    hist = tick.history(period="max", rounding=True)
-    hist = hist[-domain:]
+    data = tick.history(interval = "5m", rounding=True)
+    hist = data[-domain:]
     h = hist.Close.tolist()
     
-    return h
+    return h,hist,data
     
 
 

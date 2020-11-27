@@ -343,7 +343,7 @@ class interp:
         return result
     
 
-ticket = "DJI"
+ticket = "SPHD"
 interpObj = interp(ticket,2000)
 
 
