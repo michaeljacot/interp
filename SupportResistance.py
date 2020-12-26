@@ -16,7 +16,7 @@ import pandas as pd
 ######## main method ##########
 
 
-symbol = "BTC-USD"
+symbol = "AAPL"
 
 
 #number is in days, if the number is greater than the number of days the stock has been on the market, the plot will display all available data

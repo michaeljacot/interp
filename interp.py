@@ -15,9 +15,10 @@ from SupportResistanceMethod import getData
 
 class interp:
 
-
+    
 
     def __init__(self,ticket,domain):
+        print("here")
         sma50,sma200,prices = self.get50and200(ticket, domain)
         sma50 = sma50[:len(sma200)]
         
@@ -45,12 +46,14 @@ class interp:
     
     
     def SMA(self, x, w):
+        
         return np.convolve(x, np.ones(w), 'valid') / w
     
     
     def get50and200(self, ticket,domain):
         
         prices = getData(ticket, domain)
+        
         
         sma50 = self.SMA(prices,50)
         sma200 = self.SMA(prices,200)
