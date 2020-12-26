@@ -18,7 +18,7 @@ class interp:
     
 
     def __init__(self,ticket,domain):
-        print("here")
+        
         sma50,sma200,prices = self.get50and200(ticket, domain)
         sma50 = sma50[:len(sma200)]
         
@@ -46,7 +46,6 @@ class interp:
     
     
     def SMA(self, x, w):
-        
         return np.convolve(x, np.ones(w), 'valid') / w
     
     
@@ -346,7 +345,7 @@ class interp:
             
         return result
     
-
+#window is 5m per unit so 5m*2000 = a week 
 ticket = "BTC-USD"
 interpObj = interp(ticket,2000)
 
