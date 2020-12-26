@@ -52,12 +52,13 @@ class interp:
     
     def get50and200(self, ticket,domain):
         
-        prices = getData(ticket, domain)
+        #e and t are burner variables because we dont need them
+        prices,e,t = getData(ticket, domain)
         
         
         sma50 = self.SMA(prices,50)
         sma200 = self.SMA(prices,200)
-        
+    
         return sma50,sma200,prices
         
         
@@ -346,7 +347,7 @@ class interp:
         return result
     
 
-ticket = "SPHD"
+ticket = "BTC-USD"
 interpObj = interp(ticket,2000)
 
 
