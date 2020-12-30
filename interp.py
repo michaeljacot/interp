@@ -76,6 +76,8 @@ class interp:
     Idea 2 : Idea for estimating the amount of money put into each position. Use the angle between the two moving averages as an indicator to 
         how much money should be placed into the position.
         
+    Idea 3: Use polyfit on the data set with n = 1-10 and check the value of the dervative at the last point of the interpolated curves
+        
         
     
     """
