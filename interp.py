@@ -81,7 +81,8 @@ class interp:
         
     
     """
-    
+    # why 
+
     
     
     #this method takes in two plots and returns the intersection points of the curves as well as the angle at which they intersect

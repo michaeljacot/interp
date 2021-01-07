@@ -16,7 +16,10 @@ import pandas as pd
 ######## main method ##########
 
 
-symbol = "AAPL"
+
+
+
+symbol = "BTC-USD"
 
 
 #number is in days, if the number is greater than the number of days the stock has been on the market, the plot will display all available data
@@ -29,7 +32,7 @@ date = str(date.name)
 intervals = [23,45] 
 
 
-sLines,rLines,aLines,intervals = getLines(data,True,intervals,False)
+sLines,rLines,aLines,intervals = getLines(data,True,intervals,True)
 
 
 plt.plot(data)

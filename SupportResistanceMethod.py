@@ -310,7 +310,7 @@ def resistanceLines(resistanceVals,h,dx,automatic,intervals,output):
 
     
 
-
+    
     thisRP2 = resistanceVals[0]
     if output: print("First resistance line " , thisRP1,thisRP2)
         
@@ -410,7 +410,7 @@ def resistanceLines(resistanceVals,h,dx,automatic,intervals,output):
             thisResistanceLine = getLine(thisRP1,thisRP2)
             i+=1
             
-              
+  
     return resistanceLines
 
 
